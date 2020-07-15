@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: "Hot"
+    name: "HotNav"
   }
 </script>
 
