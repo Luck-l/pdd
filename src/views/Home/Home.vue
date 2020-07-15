@@ -2,19 +2,15 @@
   <div class="home">
     <ly-tab class="tab" v-model="selectedId" :items="items" :options="options" @change="handleChange"></ly-tab>
     <router-view></router-view>
-    <hot-nav></hot-nav>
-  </div>
+      </div>
 </template>
 
 <script>
 
-  import HotNav from "./Children/Hot/HotNav";
 
   export default {
     name: "Home",
-    components:{
-      HotNav
-    },
+
     data(){
       return{
         selectedId:0,
@@ -45,16 +41,16 @@
 
 <style scoped>
   .home{
-    padding: 51px 0 49px 0;
+    padding: 49px 0 49px 0;
     width: 100%;
     height: 100%;
   }
   .tab{
     position: fixed;
     top: 0;
-    background-color: pink;
+    background-color: #eeeeee;
     /*left: 0;*/
-    /*z-index: 999;*/
+    z-index: 999;
 
   }
 </style>

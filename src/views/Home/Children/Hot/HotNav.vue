@@ -139,11 +139,13 @@
 
 <style scoped>
   .hot-nav{
-    height: 180px;
+    height: 200px;
     width: 100%;
     position: relative;
     background-color: #ffffff;
     padding-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   .hot-nav-content{
     width: 100%;
@@ -193,7 +195,7 @@
     position: absolute;
     left: 50%;
     margin-left: -50px;
-    bottom: 2px;
+    bottom: 10px;
   }
   .hot-nav-bottom-inner{
     position: absolute;

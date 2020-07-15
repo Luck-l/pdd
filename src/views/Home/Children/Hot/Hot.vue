@@ -13,6 +13,9 @@
       <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper08.jpg" alt=""></a></mt-swipe-item>
     </mt-swipe>
     </div>
+
+      <hot-nav></hot-nav>
+      <hot-shop></hot-shop>
   </div>
 </template>
 
@@ -23,20 +26,26 @@
   Vue.component(Swipe.name, Swipe);
   Vue.component(SwipeItem.name, SwipeItem);
 
+  import HotNav from "./HotNav";
+  import HotShop from "./HotShop";
 
     export default {
     name: "Hot",
-  }
+    components:{
+      HotNav,
+      HotShop
+     }
+    }
 </script>
 
 <style scoped>
   .hot{
     width: 100%;
     height: 100%;
-    background-color: #ff8198;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #eeeeee;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
   }
   .mt {
     width: 100%;
