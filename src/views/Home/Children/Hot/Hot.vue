@@ -1,16 +1,18 @@
 <template>
   <div class="hot">
 <!--    轮播图-->
-    <mt-swipe class="mt" :auto="3000">
-      <mt-swipe-item><a href="#"><img src="../../../assets/img/hot-swiper/swiper01.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../assets/img/hot-swiper/swiper02.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../assets/img/hot-swiper/swiper03.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../assets/img/hot-swiper/swiper04.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../assets/img/hot-swiper/swiper05.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../assets/img/hot-swiper/swiper06.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../assets/img/hot-swiper/swiper07.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../assets/img/hot-swiper/swiper08.jpg" alt=""></a></mt-swipe-item>
+    <div class="mt">
+    <mt-swipe :auto="3000">
+      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper01.jpg" alt=""></a></mt-swipe-item>
+      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper02.jpg" alt=""></a></mt-swipe-item>
+      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper03.jpg" alt=""></a></mt-swipe-item>
+      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper04.jpg" alt=""></a></mt-swipe-item>
+      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper05.jpg" alt=""></a></mt-swipe-item>
+      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper06.jpg" alt=""></a></mt-swipe-item>
+      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper07.jpg" alt=""></a></mt-swipe-item>
+      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper08.jpg" alt=""></a></mt-swipe-item>
     </mt-swipe>
+    </div>
   </div>
 </template>
 
@@ -22,10 +24,8 @@
   Vue.component(SwipeItem.name, SwipeItem);
 
 
-
-  export default {
+    export default {
     name: "Hot",
-
   }
 </script>
 
