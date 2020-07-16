@@ -30,11 +30,12 @@
   import HotShop from "./HotShop";
 
     export default {
-    name: "Hot",
-    components:{
-      HotNav,
-      HotShop
-     }
+      name: "Hot",
+      components: {
+        HotNav,
+        HotShop
+      },
+
     }
 </script>
 

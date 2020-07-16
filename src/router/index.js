@@ -17,6 +17,7 @@ const Man = () => import("../views/Home/Children/Man")
 const Mbady = () => import("../views/Home/Children/Mbady")
 const Shirt = () => import("../views/Home/Children/Shirt")
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -44,7 +45,8 @@ const routes = [
   },
   {
     path:"/search",
-    component:Search
+    component:Search,
+
   },{
     path:"/recommend",
     component:Recommend
