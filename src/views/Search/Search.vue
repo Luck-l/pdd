@@ -10,24 +10,26 @@
         </ul>
       </div>
       <div class="shop-wrapper">
-        <ul>
-          <li class="shops-li">
-            <div class="shops-title">
-              <h4>热门分类</h4>
-              <a href="">查看更多></a>
-            </div>
-            <ul class="shops-items">
-              <li v-for="(item,index) in shops" :key="index">
+      <ul>
+        <li class="shops-li" v-for="(item,index) in array" :key="index">
+          <div class="shops-title">
+            <h4>{{item.name}}</h4>
+            <a href="">查看更多></a>
+          </div>
+          <ul class="shops-items">
+            <li v-for="(item,index) in shops" :key="index">
               <img :src="item.imgURL" alt="">
               <span>{{item.name}}</span>
-              </li>
-            </ul>
+            </li>
+          </ul>
+        </li>
 
 
-          </li>
-        </ul>
-      </div>
+      </ul>
     </div>
+
+    </div>
+
   </div>
 </template>
 
@@ -63,7 +65,7 @@
           {imgURL:require("../../assets/img/search-shops/search13.jpg"),name:"民间运动"},
           {imgURL:require("../../assets/img/search-shops/search10.jpg"),name:"女士泳衣"},
           {imgURL:require("../../assets/img/search-shops/search11.jpg"),name:"男士泳衣裤"},
-          {imgURL:require("../../assets/img/search-shops/search12.jpg"),name:"汽车"},]
+          {imgURL:require("../../assets/img/search-shops/search12.jpg"),name:"汽车"},],
       }
     },
     components:{
@@ -144,6 +146,7 @@
   .shops-items{
     display: flex;
     flex-wrap: wrap;
+
   }
   .shops-items li{
     display: flex;
@@ -164,8 +167,13 @@
   .shops-li{
     list-style: none;
   }
-  .shop-items{
+  .shops-items{
     list-style: none;
+  }
+  .shops-items{
+
+    border-bottom: 2px solid rgba(0,0,0,.1);
+
   }
 
   .current{

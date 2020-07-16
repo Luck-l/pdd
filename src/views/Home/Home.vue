@@ -48,6 +48,7 @@
   .tab{
     position: fixed;
     top: 0;
+    left: 0;
     background-color: #eeeeee;
     /*left: 0;*/
     z-index: 999;
