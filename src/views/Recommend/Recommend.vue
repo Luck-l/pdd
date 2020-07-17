@@ -445,7 +445,6 @@
   .list-item-right-img img{
     border-radius: 50%;
     width: 10%;
-    margin-left: 5px;
     margin-left: 30px;
   }
   .list-item-right-img img:nth-child(2){
@@ -472,14 +471,9 @@
     height: 20px;
     line-height: 20px;
     flex: 100;
-    margin-left: 5px;
+    /*margin-left: 5px;*/
   }
-  .bottom{
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 5px;
-  }
-  .recommend{
+   .recommend{
     margin-bottom: 49px;
   }
 </style>

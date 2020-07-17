@@ -310,15 +310,12 @@
   .list-item-title{
     height: 16px;
     line-height: 16px;
-    font-size: 16px;
+    font-size: 14px;
     vertical-align: top;
-    flex: 2;
-    overflow: hidden;
   }
   .list-item-right-img img{
     border-radius: 50%;
     width: 10%;
-    margin-left: 5px;
     margin-left: 30px;
   }
   .list-item-right-img img:nth-child(2){
@@ -343,14 +340,9 @@
     color: #9c9c9c;
     font-weight: 400;
     font-size: 12px;
-    height: 20px;
+    /*height: 20px;*/
     line-height: 20px;
     flex: 100;
-    margin-left: 5px;
-  }
-  .bottom{
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 5px;
+    /*margin-left: 5px;*/
   }
 </style>
