@@ -1,317 +1,84 @@
 <template>
   <div>
-    <div class="shop-container">
-    <a href="#">
+    <div class="shop-container" v-if="homeshops.length > 0">
       <ul class="shop-list">
-        <li class="shop-list-item">
+        <li class="shop-list-item" v-for="(shops,index) in homeshops" :key="index">
           <div class="list-item-img">
-            <img src="../../../../assets/img/hot-shop/shop01.jpg" alt="" width="45%" height="200px">
+            <img :src="shops.imgURL" alt="" width="90%">
           </div>
           <div class="list-item-right">
-           <span>
-            <img src="../../../../assets/img/hot-shop/shop02.jpg" alt="" width="20%">
-            <span class="list-item-title">网红同款小猪泡泡机照相机儿童少女心可充电全自动泡泡枪电动玩具</span>
-          </span>
+            <div class="list-item-right-top">
+               <span>
+                <img :src="shops.imgURL1" alt="" width="20%">
+                <span class="list-item-title">{{shops.title}}</span>
+              </span>
+              </div>
             <div class="list-item-right-bottom">
-              <span class="list-item-title2">休闲玩具畅销前十</span>
-              <span class="list-item-title2">立减1元</span>
+              <span class="list-item-title2">{{shops.name1}}</span>
+              <span class="list-item-title2">{{shops.name2}}</span>
               <div class="bottom">
-                <span class="list-price">¥7.11</span>
-                <span class="list-title">已拼10万+件</span>
+                <span class="list-price">{{shops.price}}</span>
+                <span class="list-title">{{shops.name3}}</span>
                 <span class="list-item-right-img">
-                  <img src="../../../../assets/img/hot-shop/shop03.jpg" alt="">
-                  <img src="../../../../assets/img/hot-shop/shop04.jpg" alt="">
+                  <img :src="shops.img1" alt="">
+                  <img :src="shops.img2" alt="">
                  </span>
               </div>
-
             </div>
-
           </div>
         </li>
       </ul>
-    </a>
   </div>
-    <div class="shop-container">
-      <a href="#">
-        <ul class="shop-list">
-          <li class="shop-list-item">
-            <div class="list-item-img">
-              <img src="../../../../assets/img/hot-shop/shop013.jpg" alt="" width="45%" height="200px">
-            </div>
-            <div class="list-item-right">
-           <span>
-            <img src="../../../../assets/img/hot-shop/shop02.jpg" alt="" width="20%">
-            <span class="list-item-title">搓澡神器硅胶搓澡巾男女强力搓背搓泥灰长条后背去死皮洗澡沐浴刷</span>
-          </span>
-              <div class="list-item-right-bottom">
-                <span class="list-item-title2">极速退款</span>
-                <span class="list-item-title2">满23返2</span>
-                <div class="bottom">
-                  <span class="list-price">¥1.98</span>
-                  <span class="list-title">已拼10万+件</span>
-                  <span class="list-item-right-img">
-                <img src="../../../../assets/img/hot-shop/shop033.jpg" alt="">
-                <img src="../../../../assets/img/hot-shop/shop031.jpg" alt="">
-              </span>
-                </div>
-
-              </div>
-
-            </div>
-          </li>
-        </ul>
-      </a>
-    </div>
-    <div class="shop-container">
-      <a href="#">
-        <ul class="shop-list">
-          <li class="shop-list-item">
-            <div class="list-item-img">
-              <img src="../../../../assets/img/hot-shop/shop014.jpg" alt="" width="45%" height="200px">
-            </div>
-            <div class="list-item-right">
-           <span>
-            <img src="../../../../assets/img/hot-shop/shop02.jpg" alt="" width="20%">
-            <span class="list-item-title">汽车临时停车牌挪车电话号码牌防滑车载夜光电话牌内饰用品摆件</span>
-          </span>
-              <div class="list-item-right-bottom">
-                <span class="list-item-title2">退货包运费</span>
-                <span class="list-item-title2"></span>
-                <div class="bottom">
-                  <span class="list-price">¥1.02</span>
-                  <span class="list-title">已拼10万+件</span>
-                  <span class="list-item-right-img">
-                <img src="../../../../assets/img/hot-shop/shop031.jpg" alt="">
-                <img src="../../../../assets/img/hot-shop/shop032.jpg" alt="">
-              </span>
-                </div>
-
-              </div>
-
-            </div>
-          </li>
-        </ul>
-      </a>
-    </div>
-    <div class="shop-container">
-      <a href="#">
-        <ul class="shop-list">
-          <li class="shop-list-item">
-            <div class="list-item-img">
-              <img src="../../../../assets/img/hot-shop/shop01.jpg" alt="" width="45%" height="200px">
-            </div>
-            <div class="list-item-right">
-           <span>
-            <img src="../../../../assets/img/hot-shop/shop02.jpg" alt="" width="20%">
-            <span class="list-item-title">网红同款小猪泡泡机照相机儿童少女心可充电全自动泡泡枪电动玩具</span>
-          </span>
-              <div class="list-item-right-bottom">
-                <span class="list-item-title2">休闲玩具畅销前十</span>
-                <span class="list-item-title2">立减1元</span>
-                <div class="bottom">
-                  <span class="list-price">¥7.11</span>
-                  <span class="list-title">已拼10万+件</span>
-                  <span class="list-item-right-img">
-                <img src="../../../../assets/img/hot-shop/shop03.jpg" alt="">
-                <img src="../../../../assets/img/hot-shop/shop04.jpg" alt="">
-              </span>
-                </div>
-
-              </div>
-
-            </div>
-          </li>
-        </ul>
-      </a>
-    </div>
-    <div class="shop-container">
-      <a href="#">
-        <ul class="shop-list">
-          <li class="shop-list-item">
-            <div class="list-item-img">
-              <img src="../../../../assets/img/hot-shop/shop013.jpg" alt="" width="45%" height="200px">
-            </div>
-            <div class="list-item-right">
-           <span>
-            <img src="../../../../assets/img/hot-shop/shop02.jpg" alt="" width="20%">
-            <span class="list-item-title">搓澡神器硅胶搓澡巾男女强力搓背搓泥灰长条后背去死皮洗澡沐浴刷</span>
-          </span>
-              <div class="list-item-right-bottom">
-                <span class="list-item-title2">极速退款</span>
-                <span class="list-item-title2">满23返2</span>
-                <div class="bottom">
-                  <span class="list-price">¥1.98</span>
-                  <span class="list-title">已拼10万+件</span>
-                  <span class="list-item-right-img">
-                <img src="../../../../assets/img/hot-shop/shop033.jpg" alt="">
-                <img src="../../../../assets/img/hot-shop/shop031.jpg" alt="">
-              </span>
-                </div>
-
-              </div>
-
-            </div>
-          </li>
-        </ul>
-      </a>
-    </div>
-    <div class="shop-container">
-      <a href="#">
-        <ul class="shop-list">
-          <li class="shop-list-item">
-            <div class="list-item-img">
-              <img src="../../../../assets/img/hot-shop/shop014.jpg" alt="" width="45%" height="200px">
-            </div>
-            <div class="list-item-right">
-           <span>
-            <img src="../../../../assets/img/hot-shop/shop02.jpg" alt="" width="20%">
-            <span class="list-item-title">汽车临时停车牌挪车电话号码牌防滑车载夜光电话牌内饰用品摆件</span>
-          </span>
-              <div class="list-item-right-bottom">
-                <span class="list-item-title2">退货包运费</span>
-                <span class="list-item-title2"></span>
-                <div class="bottom">
-                  <span class="list-price">¥1.02</span>
-                  <span class="list-title">已拼10万+件</span>
-                  <span class="list-item-right-img">
-                <img src="../../../../assets/img/hot-shop/shop031.jpg" alt="">
-                <img src="../../../../assets/img/hot-shop/shop032.jpg" alt="">
-              </span>
-                </div>
-
-              </div>
-
-            </div>
-          </li>
-        </ul>
-      </a>
-    </div>
-    <div class="shop-container">
-      <a href="#">
-        <ul class="shop-list">
-          <li class="shop-list-item">
-            <div class="list-item-img">
-              <img src="../../../../assets/img/hot-shop/shop01.jpg" alt="" width="45%" height="200px">
-            </div>
-            <div class="list-item-right">
-           <span>
-            <img src="../../../../assets/img/hot-shop/shop02.jpg" alt="" width="20%">
-            <span class="list-item-title">网红同款小猪泡泡机照相机儿童少女心可充电全自动泡泡枪电动玩具</span>
-          </span>
-              <div class="list-item-right-bottom">
-                <span class="list-item-title2">休闲玩具畅销前十</span>
-                <span class="list-item-title2">立减1元</span>
-                <div class="bottom">
-                  <span class="list-price">¥7.11</span>
-                  <span class="list-title">已拼10万+件</span>
-                  <span class="list-item-right-img">
-                <img src="../../../../assets/img/hot-shop/shop03.jpg" alt="">
-                <img src="../../../../assets/img/hot-shop/shop04.jpg" alt="">
-              </span>
-                </div>
-
-              </div>
-
-            </div>
-          </li>
-        </ul>
-      </a>
-    </div>
-    <div class="shop-container">
-      <a href="#">
-        <ul class="shop-list">
-          <li class="shop-list-item">
-            <div class="list-item-img">
-              <img src="../../../../assets/img/hot-shop/shop013.jpg" alt="" width="45%" height="200px">
-            </div>
-            <div class="list-item-right">
-           <span>
-            <img src="../../../../assets/img/hot-shop/shop02.jpg" alt="" width="20%">
-            <span class="list-item-title">搓澡神器硅胶搓澡巾男女强力搓背搓泥灰长条后背去死皮洗澡沐浴刷</span>
-          </span>
-              <div class="list-item-right-bottom">
-                <span class="list-item-title2">极速退款</span>
-                <span class="list-item-title2">满23返2</span>
-                <div class="bottom">
-                  <span class="list-price">¥1.98</span>
-                  <span class="list-title">已拼10万+件</span>
-                  <span class="list-item-right-img">
-                <img src="../../../../assets/img/hot-shop/shop033.jpg" alt="">
-                <img src="../../../../assets/img/hot-shop/shop031.jpg" alt="">
-              </span>
-                </div>
-
-              </div>
-
-            </div>
-          </li>
-        </ul>
-      </a>
-    </div>
-    <div class="shop-container">
-      <a href="#">
-        <ul class="shop-list">
-          <li class="shop-list-item">
-            <div class="list-item-img">
-              <img src="../../../../assets/img/hot-shop/shop014.jpg" alt="" width="45%" height="200px">
-            </div>
-            <div class="list-item-right">
-           <span>
-            <img src="../../../../assets/img/hot-shop/shop02.jpg" alt="" width="20%">
-            <span class="list-item-title">汽车临时停车牌挪车电话号码牌防滑车载夜光电话牌内饰用品摆件</span>
-          </span>
-              <div class="list-item-right-bottom">
-                <span class="list-item-title2">退货包运费</span>
-                <span class="list-item-title2"></span>
-                <div class="bottom">
-                  <span class="list-price">¥1.02</span>
-                  <span class="list-title">已拼10万+件</span>
-                  <span class="list-item-right-img">
-                <img src="../../../../assets/img/hot-shop/shop031.jpg" alt="">
-                <img src="../../../../assets/img/hot-shop/shop032.jpg" alt="">
-              </span>
-                </div>
-
-              </div>
-
-            </div>
-          </li>
-        </ul>
-      </a>
-    </div>
   </div>
 </template>
 
 <script>
+  import {mapState} from "vuex"
   export default {
-    name: "HotShop"
+    name: "HotShop",
+    computed:{
+      ...mapState(["homeshops"])
+    },
+    mounted() {
+      this.$store.dispatch("reqHomeShops")
+    }
   }
 </script>
 
 <style scoped>
   .shop-container{
     position: relative;
-    background-color: #ffffff;
+    background-color: #fff;
     height: 100%;
     width: 100%;
     margin-bottom: 10px;
   }
   .list-item-img{
     padding:10px;
+    flex: 3;
+  }
+  .shop-list-item{
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    justify-content: center;
   }
   .list-item-right{
-    height: 200px;
-    float: right;
-    position: absolute;
-    top: 10px;
-    right: 0;
-    width: 50%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex:3;
   }
   .list-item-title{
     height: 16px;
-    line-height: 16px;
-    font-size: 14px;
+    line-height: 18px;
+    font-size: 16px;
     vertical-align: top;
+
   }
   .list-item-right-img img{
     border-radius: 50%;
@@ -321,28 +88,37 @@
   .list-item-right-img img:nth-child(2){
     margin-left: -5px;
   }
+  .list-item-right-top{
+    height: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 100px;
+  }
   .list-item-right-bottom{
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    height: 100%;
+    width: 100%;
   }
   .list-item-title2{
     background-color: rgba(255,87,6,.6);
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: lighter;
     margin-right: 5px;
   }
   .list-price{
     font-size: 16px;
     color: red;
-    flex: 1;
   }
   .list-title{
     color: #9c9c9c;
     font-weight: 400;
     font-size: 12px;
-    /*height: 20px;*/
+    height: 20px;
     line-height: 20px;
-    flex: 100;
-    /*margin-left: 5px;*/
+
+  }
+  .recommend{
+    height: 100%;
+    width: 100%;
+    margin-bottom: 49px;
   }
 </style>

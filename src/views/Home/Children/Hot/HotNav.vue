@@ -1,71 +1,10 @@
 <template>
   <div class="hot-nav">
     <div class="hot-nav-content">
-      <div class="hot-content-inner">
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/01.jpg" alt="">
-            <span>限时秒杀</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/02.jpg" alt="">
-            <span>断码清仓</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/03.jpg" alt="">
-            <span>新衣馆</span>
-          </a>
-          <a href="#" class="hot-inner4">
-            <img class="img4" src="../../../../assets/img/hot-nav/04.jpg" alt="">
-            <img class="img44" src="../../../../assets/img/hot-nav/044.jpg" alt="">
-            <span>免费领取水果</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/05.jpg" alt="">
-            <span>9块9特卖</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/06.jpg" alt="">
-            <span>多多爱消除</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/07.jpg" alt="">
-            <span>爱逛街</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/08.jpg" alt="">
-            <span>省钱月卡</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/09.jpg" alt="">
-           <span>充值中心</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/10.jpg" alt="">
-           <span>医药馆</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/11.jpg" alt="">
-            <span>现金签到</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/12.jpg" alt="">
-            <span>多多赚大钱</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/13.jpg" alt="">
-           <span>天天领现金</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/14.jpg" alt="">
-            <span>电器城</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/15.jpg" alt="">
-            <span>砍价免费拿</span>
-          </a>
-          <a href="#" class="hot-inner">
-            <img src="../../../../assets/img/hot-nav/16.jpg" alt="">
-            <span>每日好店</span>
+      <div class="hot-content-inner" v-if="homenav.length > 0">
+          <a href="#" class="hot-inner" v-for="(nav,index) in homenav" :key="index">
+            <img :src="nav.imgURL" alt="">
+            <span>{{nav.name}}</span>
           </a>
       </div>
     </div>
@@ -77,6 +16,7 @@
 </template>
 
 <script>
+  import {mapState} from "vuex"
   export default {
     name: "HotNav",
     data(){
@@ -92,6 +32,8 @@
       }
     },
     computed:{
+      ...mapState(["homenav"]),
+
       bottomWStyle(){
         return{
           width:`${this.hotNavBottomInnerW}px`,
@@ -100,6 +42,9 @@
       }
     },
     mounted() {
+
+      this.$store.dispatch("reqHomeNav")
+
       this.getBottomBarW()
       this.bindEvent()
     },

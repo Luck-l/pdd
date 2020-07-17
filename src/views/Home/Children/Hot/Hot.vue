@@ -2,15 +2,8 @@
   <div class="hot">
 <!--    轮播图-->
     <div class="mt">
-    <mt-swipe :auto="3000">
-      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper01.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper02.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper03.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper04.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper05.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper06.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper07.jpg" alt=""></a></mt-swipe-item>
-      <mt-swipe-item><a href="#"><img src="../../../../assets/img/hot-swiper/swiper08.jpg" alt=""></a></mt-swipe-item>
+    <mt-swipe :auto="3000" v-if="homecasual.length > 0">
+      <mt-swipe-item v-for="(casual,index) in homecasual" :key="index"><a href="#"><img :src="casual.imgURL" alt=""></a></mt-swipe-item>
     </mt-swipe>
     </div>
 
@@ -29,12 +22,23 @@
   import HotNav from "./HotNav";
   import HotShop from "./HotShop";
 
+  import {
+      mapState
+  } from  "vuex"
+
     export default {
       name: "Hot",
       components: {
         HotNav,
         HotShop
       },
+      computed:{
+        ...mapState(["homecasual"])
+      },
+      mounted() {
+        //请求轮播图的数据
+        this.$store.dispatch("reqHomeCasual")
+      }
 
     }
 </script>
