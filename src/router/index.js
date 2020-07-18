@@ -6,6 +6,7 @@ const Chat = () => import("../views/Chat/Chat")
 const Me = () => import("../views/Me/Me")
 const Recommend = () => import("../views/Recommend/Recommend")
 const Search = () => import("../views/Search/Search")
+const Login = () => import("../views/Login/Login")
 
 const Hot = () => import("../views/Home/Children/Hot/Hot")
 const Box = () => import("../views/Home/Children/Box")
@@ -29,7 +30,7 @@ const routes = [
     path:"/home",
     component:Home,
     children:[
-      {path:"hot",component:Hot},
+      {path:"hot",component:Hot,meta:{showBottomTabBar:true}},
       {path:"box",component:Box},
       {path:"dress",component:Dress},
       {path:"ele",component:Ele},
@@ -46,17 +47,25 @@ const routes = [
   {
     path:"/search",
     component:Search,
+    meta:{showBottomTabBar:true}
 
   },{
     path:"/recommend",
-    component:Recommend
+    component:Recommend,
+    meta:{showBottomTabBar:true}
   },{
     path:"/chat",
-    component:Chat
+    component:Chat,
+    meta:{showBottomTabBar:true}
   },{
     path:"/me",
-    component:Me
+    component:Me,
+    meta:{showBottomTabBar:true}
   },
+  {
+    path:"/login",
+    component:Login
+  }
 
 
 ]

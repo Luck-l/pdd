@@ -1,12 +1,18 @@
 <template>
-  <div>
-    关于我
+  <div class="me">
+    <select-login/>
+
   </div>
 </template>
 
 <script>
+  import SelectLogin from "../Login/SelectLogin";
+
   export default {
-    name: "Me"
+    name: "Me",
+    components:{
+      SelectLogin
+    }
   }
 </script>
 

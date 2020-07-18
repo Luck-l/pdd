@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Main-tab-bar></Main-tab-bar>
+    <Main-tab-bar v-show="this.$route.meta.showBottomTabBar"></Main-tab-bar>
     <router-view/>
   </div>
 </template>

@@ -5,8 +5,12 @@ export default {
   homenav:[],
   //首页商品列表
   homeshops:[],
+  //推荐模块商品列表
+  recommendshops:[],
   //搜索模板导航
   searchnav:[],
   //搜索模板商品
-  searchshops:[]
+  searchshops:[],
+  //登陆模块验证码
+  // loginverify:[],
 }

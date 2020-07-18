@@ -1,10 +1,10 @@
 <template>
   <div class="search">
    <search-nav :isShowSearchPanel="isShowSearchPanel"></search-nav>
-    <div class="shop">
-      <div class="menu-wrapper">
+    <div class="shop"  >
+      <div class="menu-wrapper" v-show="searchnav.length !== undefined && searchnav.length > 0">
         <ul class="leftUl" ref="menuParent" >
-          <div v-show="searchnav.length !== undefined && searchnav.length > 0">
+          <div >
           <li class="menu-item"
               v-for="(item,index) in searchnav"
               :key="index"
@@ -17,14 +17,14 @@
           </div>
         </ul>
       </div>
-      <div class="shop-wrapper">
+      <div class="shop-wrapper" v-show="searchnav.length !== undefined && searchnav.length > 0">
       <ul ref="shopsLis">
         <li class="shops-li" v-for="(item,index) in searchnav" :key="index">
           <div class="shops-title">
             <h4>{{item.name}}</h4>
             <a href="">查看更多></a>
           </div>
-          <ul class="shops-items" v-show="searchshops.length>0">
+          <ul class="shops-items" v-show="searchshops.length !== undefined && searchshops.length > 0">
             <li v-for="(item,index) in searchshops" :key="index">
               <img :src="item.imgURL" alt="">
               <span>{{item.name}}</span>
@@ -121,9 +121,21 @@
         this.leftScroll.scrollToElement(el,300,0,0)
       }
     },
+    watch:{
+      searchnav(){
+        this.$nextTick(() =>{
+          this._initAScroll()
+        })
+      },
+      searchshops(){
+        this.$nextTick(() =>{
+          this._initBScroll()
+        })
+      }
+    },
     mounted() {
-     this._initAScroll()
-      this._initBScroll()
+     //
+     //
       this._initShopsLisTop()
 
       this.$store.dispatch("reqSearchNav")

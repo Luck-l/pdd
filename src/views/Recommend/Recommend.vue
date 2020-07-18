@@ -1,56 +1,74 @@
 <template>
-    <div class="shop-container" >
-        <ul class="shop-list" >
-          <li class="shop-list-item" v-for="(shops,index) in homeshops" :key="index">
-            <div class="list-item-img">
-              <img :src="shops.imgURL" alt="" width="90%">
-            </div>
-            <div class="list-item-right">
-              <div class="list-item-right-top">
-                 <span>
-                  <img :src="shops.imgURL1" alt="" width="20%">
-                  <span class="list-item-title">{{shops.title}}</span>
-                </span>
-              </div>
-              <div class="list-item-right-bottom">
-                <span class="list-item-title2">{{shops.name1}}</span>
-                <span class="list-item-title2">{{shops.name2}}</span>
-                <div class="bottom">
-                  <span class="list-price">{{shops.price}}</span>
-                  <span class="list-title">{{shops.name3}}</span>
-                  <span class="list-item-right-img">
-                    <img :src="shops.img1" alt="">
-                    <img :src="shops.img2" alt="">
-                   </span>
-                </div>
-              </div>
-            </div>
-          </li>
+    <div class="shop-container" v-if="recommendshops.length > 0">
+        <ul class="shop-list">
+            <recommend-shops
+              v-for="(shops,index) in recommendshops"
+              :key="index"
+              :shops = shops
+            ></recommend-shops>
         </ul>
     </div>
 </template>
 
 <script>
+  import RecommendShops from "./recommendshops/RecommendShops";
   import {mapState} from "vuex"
   import BScroll from "better-scroll"
+  import {Indicator} from "mint-ui"
   export default {
     name: "Recommend",
-    watch:{
-
+    data(){
+        return{
+            page:1,
+            count:10
+        }
+    },
+    components:{
+      RecommendShops
     },
     computed:{
-      ...mapState(["homeshops"])
+      ...mapState(["recommendshops"])
     },
     mounted() {
-      // this._initCScroll()
-      this.$store.dispatch("reqHomeShops")
+        Indicator.open("正在加载数据")
+      this.$store.dispatch("reqRecommendShops",{page:this.page,count:this.count,callback:() => {
+            Indicator.close()
+        }
+      })
+    },
+    watch:{
+      recommendshops(){
+        this.$nextTick(() =>{
+            this.page +=1
+          this._initBScroll()
+        })
+      }
     },
     methods:{
-      _initCScroll(){
-        new BScroll(".shop-container",{
+      _initBScroll(){
+        this.listScroll = new BScroll(".shop-container",{
           scrollY:true,
-          probeType:3
+          prototype:3
+        });
+
+        //监听列表的滚动
+        this.listScroll.on("touchEnd",(pos) =>{
+          //监听上拉刷新
+          if(pos.y > 50){
+              console.log("上拉刷新")
+          }
+          if(this.listScroll.maxScrollY > pos.y + 20){
+              Indicator.open("正在加载数据")
+              this.$store.dispatch("reqRecommendShops",{page:this.page,count:this.count,callback:() => {
+                      Indicator.close()
+                  }
+              })
+          }
         })
+          //监听列表滚动结束
+          this.listScroll.on("scrollEnd",() =>{
+              this.listScroll.refresh()
+          })
       }
     }
   }
@@ -58,84 +76,14 @@
 
 <style scoped>
   .shop-container{
-    position: relative;
+    position: fixed;
     background-color: #fff;
-    height: 100%;
-    width: 100%;
-    margin-bottom: 49px;
+    bottom: 0;
+    top: 0;
   }
   .shop-list{
-    height: 100%;
-    width: 100%;
-  }
-  .list-item-img{
-    padding:10px;
-    flex: 3;
-  }
-  .shop-list-item{
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: row;
-    background-color: #ffffff;
-    justify-content: center;
-  }
-  .list-item-right{
-    height: 100%;
-    width: 100%;
-    display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex:3;
-  }
-  .list-item-title{
-    height: 16px;
-    line-height: 18px;
-    font-size: 16px;
-    vertical-align: top;
-
-  }
-  .list-item-right-img img{
-    border-radius: 50%;
-    width: 10%;
-    margin-left: 30px;
-  }
-  .list-item-right-img img:nth-child(2){
-    margin-left: -5px;
-  }
-  .list-item-right-top{
-    height: 20px;
-    overflow: hidden;
-    margin-top: 10px;
-    margin-bottom: 100px;
-  }
-  .list-item-right-bottom{
-    height: 100%;
-    width: 100%;
-  }
-  .list-item-title2{
-    background-color: rgba(255,87,6,.6);
-    font-size: 12px;
-    font-weight: lighter;
-    margin-right: 5px;
-  }
-  .list-price{
-    font-size: 16px;
-    color: red;
-  }
-  .list-title{
-    color: #9c9c9c;
-    font-weight: 400;
-    font-size: 12px;
-    height: 20px;
-    line-height: 20px;
-
-  }
-   .recommend{
-     height: 100%;
-     width: 100%;
-    margin-bottom: 49px;
   }
 </style>
