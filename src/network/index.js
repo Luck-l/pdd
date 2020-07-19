@@ -1,7 +1,8 @@
 import ajax from "./ajax";
 
 //基础路径
-const BASE_URL = "http://127.0.0.1:3000";
+// const BASE_URL = "http://127.0.0.1:3000";
+const BASE_URL = "/api"
 
 //请求首页轮播图
 export const getHomeCasual = () => ajax(BASE_URL + "/api/homeswiper")
@@ -23,3 +24,9 @@ export const getSearchShops = () =>ajax(BASE_URL + "/api/searchshops")
 
 //获取登陆模块验证码
 // export const getLoginVerify = () =>ajax(BASE_URL + "/api/loginverify")
+
+//短信验证登陆
+export const loginCode = (phone,code) => ajax(BASE_URL + "/api/login_code",{phone,code},"POST")
+
+//用户名和密码登陆
+export const pwdLogin = (phone,code,captcha) => ajax(BASE_URL + "/api/login_pwd",{phone,code,captcha},"POST")

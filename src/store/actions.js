@@ -1,9 +1,9 @@
 import {
-  getHomeCasual, getHomeNav, getHomeShops,getRecommendshops, getSearchNav, getSearchShops
+  getHomeCasual, getHomeNav, getHomeShops,getRecommendshops, getSearchNav, getSearchShops,
 } from "../network"
 
 import {
-  HOME_CASUAL, HOME_NAV, HOME_SHOPS, RECOMMEND_SHOPS, SEARCH_NAV, SEARCH_SHOPS
+  HOME_CASUAL, HOME_NAV, HOME_SHOPS, RECOMMEND_SHOPS, SEARCH_NAV, SEARCH_SHOPS, USER_INFO
 } from "./mutation-types"
 
 export default {
@@ -48,4 +48,9 @@ export default {
   //   const result = await getLoginVerify()
   //   commit(LOGIN_VERIFY,{loginverify:result.data})
   // }
+
+  //同步用户的信息
+  syncUserInfo({commit},userInfo){
+    commit(USER_INFO,{userInfo})
+  }
 }

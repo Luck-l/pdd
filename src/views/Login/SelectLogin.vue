@@ -1,16 +1,22 @@
 <template>
   <div class="select-login">
+    <button class="back" @click.prevent="back()">&lt;&nbsp;返回</button>
     <div class="bottom">
       <img src="" alt="">
     </div>
     <h4>请选择登陆方式</h4>
-    <router-link tag="button" to="/login">手机登陆</router-link>
+     <router-link tag="button" to="/login">手机登陆</router-link>
   </div>
 </template>
 
 <script>
   export default {
-    name: "SelectLogin"
+    name: "SelectLogin",
+    methods:{
+      back(){
+        this.$router.replace("/home")
+      }
+    }
   }
 </script>
 
@@ -28,7 +34,7 @@
     justify-content: center;
     align-items: center;
   }
-  .select-login button{
+  .select-login button:last-child{
     width: 80%;
     height: 38px;
     background-color: purple;
@@ -37,6 +43,15 @@
     font-size: 20px;
     color: #ffffff;
     margin-top: 30px;
+  }
+  .back{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    outline: none;
   }
   .bottom{
     position: fixed;

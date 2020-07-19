@@ -13,4 +13,7 @@ export default {
   searchshops:[],
   //登陆模块验证码
   // loginverify:[],
+
+  //同步用户信息
+  userinfo:{}
 }

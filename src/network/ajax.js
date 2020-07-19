@@ -1,5 +1,6 @@
 import axios from "axios"
 
+axios.defaults.withCredentials =false
 export default function ajax(url="",params={},type="GET") {
   let promise;
   return new Promise((resolve,reject) =>{

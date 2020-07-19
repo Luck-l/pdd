@@ -20,7 +20,7 @@
               <button v-else disabled="disabled" class="get-verification" >已发送({{time}}s)</button>
             </section>
             <section class="login-verification">
-              <input type="tel" maxlength="8" placeholder="验证码">
+              <input type="tel" maxlength="8" placeholder="验证码" v-model="code">
             </section>
             <section class="login-hint">
               温馨提示：未注册pdd账号的手机号，登陆时将自动注册，且代表已同意
@@ -32,32 +32,41 @@
           <div :class="{current:!loginMode}">
             <section>
               <section class="login-message">
-                <input type="tel" maxlength="11" placeholder="用户名/手机/邮箱">
+                <input type="tel" maxlength="11" placeholder="用户名/手机/邮箱" v-model="user_name">
               </section>
               <section class="login-verification">
-                <input type="text" maxlength="8" placeholder="密码" v-if="!pwdMode">
-                <input type="password" maxlength="" placeholder="密码" v-else>
+                <input type="text" maxlength="8" placeholder="密码" v-if="!pwdMode" v-model="pwd">
+                <input type="password" maxlength="" placeholder="密码" v-else v-model="pwd">
                 <div class="switch-show">
                   <button :class="{on:!pwdMode}" class="icon-eye"  @click.prevent="dealPwdMode(true)"></button>
                   <button :class="{on:pwdMode}" class="icon-eye-blocked" @click.prevent="dealPwdMode(false)"></button>
                 </div>
               </section>
               <section class="login_message">
-                <input type="text" maxlength="11" placeholder="验证码">
-                <img class="get_verification" src="http://localhost:3000/api/loginverify" alt="captcha">
+                <input type="text" maxlength="6" placeholder="验证码" v-model="captcha">
+                <img
+                        class="get_verification"
+                        src="http://localhost:3000/api/loginverify"
+                        alt="captcha"
+                        ref="verify"
+                        @click.prevent = "getCaptcha()"
+>
               </section>
             </section>
           </div>
-          <button class="login-submit">登陆</button>
+          <button :class="{current:loginMode}" @click.prevent="login()" class="login-submit" >登陆</button>
+<!--          <button :class="{current:!loginMode}" v-else @click.prevent="dealLoginMode(false)" class="login-submit">登陆</button>-->
         </form>
-        <button class="login-back" @click="$router.back()">返回</button>
+        <button class="login-back" @click.prevent="$router.back()">返回</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  // import {mapState} from "vuex"
+  import {Toast} from "mint-ui"
+  import {loginCode,pwdLogin} from "../../network";
+  import {mapActions} from "vuex"
 
   export default {
     name: "Login",
@@ -67,7 +76,11 @@
         phone:"", //手机号
         time:0, //验证码倒计时
         pwdMode:true, //true 代表密码暗文显示
+        user_name:"",//
         pwd:"",
+        captcha:"",//验证码
+        code:"", //验证码
+        userInfo:{},//用户信息
       }
     },
     computed:{
@@ -81,11 +94,12 @@
       // this.$store.dispatch("reqLoginVerify")
     },
     methods:{
+      ...mapActions(["syncUserInfo"]),
       //登陆方式
       dealLoginMode(flag){
         this.loginMode = flag
       },
-      //获取验证码
+      //获取手机验证码
       getverifycode(){
         if(this.phoneRight){
           this.time = 60
@@ -95,22 +109,131 @@
               clearInterval(this.intervalId)
             }
           },1000)
+          Toast({
+            message:'不会发送验证码，请随意输入6位数字登陆',
+            position:'bottom',
+            duration:1500,
+            className:'toast'
+          });
         }
+      },
+      //刷新密码登陆验证码
+      getCaptcha(){
+        this.$refs.verify.src = "http://localhost:3000/api/loginverify?time" +new Date()
       },
       //密码显示方式
       dealPwdMode(flag){
         this.pwdMode = flag
+      },
+      //登陆
+      async login(){
+         if(this.loginMode) {//短信登陆
+           if(!this.phone){
+             Toast({
+               message:'请输入手机号码',
+               position:'bottom',
+               duration:1500,
+               className:'toast'
+             });
+             return;
+           }else if(!this.phoneRight){
+             Toast({
+               message: '请输入正确的手机号码',
+               position: 'bottom',
+               duration: 1500,
+               className: 'toast'
+             })
+             return;
+           }
+
+           // if(!this.code) {
+           //   Toast({
+           //     message: '请输入验证码！',
+           //     position: 'bottom',
+           //     duration: 1500,
+           //     className: 'toast'
+           //   })
+           // }
+           // else if(!(/^\d{6}$/gi.test(this.code))){
+           //   Toast({
+           //     message: '请输入正确的验证码！',
+           //     position: 'bottom',
+           //     duration: 1500,
+           //     className: 'toast'
+           //   })
+           // }
+
+           const result = await loginCode(this.phone,this.code)
+           if(result.success_code === 200){
+             this.userInfo = result.message
+           }else {
+             this.userInfo = {
+               message:"登陆失败，手机号或验证码错误!"
+             }
+           }
+         }
+         if(!this.loginMode){ //验证码登陆
+           if(!this.user_name){
+             Toast({
+               message: '请输入正确的用户名！',
+               position: 'bottom',
+               duration: 1500,
+               className: 'toast'
+             })
+             return
+           }else if(!this.pwd) {
+             Toast({
+               message: '请输入正确的密码！',
+               position: 'bottom',
+               duration: 1500,
+               className: 'toast'
+             })
+             return
+           }else if(!this.captcha) {
+             Toast({
+               message: '请输入正确的验证码！',
+               position: 'bottom',
+               duration: 1500,
+               className: 'toast'
+             })
+             return
+           }
+           const result = await pwdLogin(this.user_name,this.pwd,this.captcha)
+           if(result.success_code === 200){
+             this.userInfo = result.message
+           }else {
+             this.userInfo = {
+               message:"登陆失败，用户名或密码和验证码错误!"
+             }
+           }
+         }
+
+         if(!this.userInfo.id){ //失败
+           Toast(this.userInfo.message)
+         }else { //成功
+           this.syncUserInfo(this.userInfo)
+           this.$router.back()
+
+         }
+
       }
     }
   }
 </script>
 
-<style scoped>
+<style>
   .login-container{
     z-index: 999;
     width: 100%;
     height: 100%;
     background: #ffffff;
+  }
+  .toast{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: red !important;
   }
   .login-inner{
     padding-top: 60px;
