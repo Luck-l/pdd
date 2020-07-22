@@ -6,6 +6,7 @@ import store from './store'
 
 Vue.config.productionTip = false
 import LyTab from "ly-tab"
+import "./assets/iconfont/style.css"
 Vue.use(LyTab)
 
 new Vue({

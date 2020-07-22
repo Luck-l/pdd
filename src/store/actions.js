@@ -1,9 +1,9 @@
 import {
-  getHomeCasual, getHomeNav, getHomeShops,getRecommendshops, getSearchNav, getSearchShops,
+  getHomeCasual, getHomeNav, getHomeShops, getLogOut, getRecommendshops, getSearchNav, getSearchShops, getUserInfo,
 } from "../network"
 
 import {
-  HOME_CASUAL, HOME_NAV, HOME_SHOPS, RECOMMEND_SHOPS, SEARCH_NAV, SEARCH_SHOPS, USER_INFO
+  HOME_CASUAL, HOME_NAV, HOME_SHOPS, RECOMMEND_SHOPS, RESET_USER_INFO, SEARCH_NAV, SEARCH_SHOPS, USER_INFO
 } from "./mutation-types"
 
 export default {
@@ -43,14 +43,25 @@ export default {
     const result = await getSearchShops()
     commit(SEARCH_SHOPS,{searchshops:result.message})
   },
-  //登陆模块验证码
-  // async reqLoginVerify({commit}){
-  //   const result = await getLoginVerify()
-  //   commit(LOGIN_VERIFY,{loginverify:result.data})
-  // }
 
   //同步用户的信息
   syncUserInfo({commit},userInfo){
     commit(USER_INFO,{userInfo})
+  },
+
+  //异步获取用户信息
+  async getUserInfo({commit}){
+    const result =await getUserInfo()
+    if(result.success_code === 200){
+      commit(USER_INFO,{userInfo:result.message})
+    }
+  },
+
+  //退出登陆
+  async logout({commit}){
+    const result =await getLogOut()
+    if(result.success_code === 200){
+      commit(RESET_USER_INFO)
+    }
   }
 }

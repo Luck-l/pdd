@@ -11,10 +11,6 @@ module.exports = {
   //   }
   // },
   devServer: {
-    host:"localhost",
-    port:"8080",
-    https:false,
-    hotOnly:false,
     proxy: {
       '/api': {
         // agent: new ProxyAgent('http://localhost:3000'),

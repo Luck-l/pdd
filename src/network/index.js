@@ -29,4 +29,10 @@ export const getSearchShops = () =>ajax(BASE_URL + "/api/searchshops")
 export const loginCode = (phone,code) => ajax(BASE_URL + "/api/login_code",{phone,code},"POST")
 
 //用户名和密码登陆
-export const pwdLogin = (phone,code,captcha) => ajax(BASE_URL + "/api/login_pwd",{phone,code,captcha},"POST")
+export const pwdLogin = (name,pwd,captcha) => ajax(BASE_URL + "/api/login_pwd",{name,pwd,captcha},"POST")
+
+//获取登陆的用户信息
+export const getUserInfo = () =>ajax(BASE_URL + "/api/user_info")
+
+//退出登陆
+export const getLogOut = ()=>ajax(BASE_URL + "/api/logout")

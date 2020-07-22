@@ -11,9 +11,6 @@ export default {
   searchnav:[],
   //搜索模板商品
   searchshops:[],
-  //登陆模块验证码
-  // loginverify:[],
-
   //同步用户信息
   userinfo:{}
 }

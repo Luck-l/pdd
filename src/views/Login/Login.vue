@@ -31,9 +31,9 @@
 <!--          密码登陆-->
           <div :class="{current:!loginMode}">
             <section>
-              <section class="login-message">
-                <input type="tel" maxlength="11" placeholder="用户名/手机/邮箱" v-model="user_name">
-              </section>
+              <div class="login-message">
+                <input type="tel" maxlength="11" placeholder="用户名/手机/邮箱" v-model="name">
+              </div>
               <section class="login-verification">
                 <input type="text" maxlength="8" placeholder="密码" v-if="!pwdMode" v-model="pwd">
                 <input type="password" maxlength="" placeholder="密码" v-else v-model="pwd">
@@ -76,7 +76,7 @@
         phone:"", //手机号
         time:0, //验证码倒计时
         pwdMode:true, //true 代表密码暗文显示
-        user_name:"",//
+        name:"",
         pwd:"",
         captcha:"",//验证码
         code:"", //验证码
@@ -145,24 +145,6 @@
              })
              return;
            }
-
-           // if(!this.code) {
-           //   Toast({
-           //     message: '请输入验证码！',
-           //     position: 'bottom',
-           //     duration: 1500,
-           //     className: 'toast'
-           //   })
-           // }
-           // else if(!(/^\d{6}$/gi.test(this.code))){
-           //   Toast({
-           //     message: '请输入正确的验证码！',
-           //     position: 'bottom',
-           //     duration: 1500,
-           //     className: 'toast'
-           //   })
-           // }
-
            const result = await loginCode(this.phone,this.code)
            if(result.success_code === 200){
              this.userInfo = result.message
@@ -171,9 +153,8 @@
                message:"登陆失败，手机号或验证码错误!"
              }
            }
-         }
-         if(!this.loginMode){ //验证码登陆
-           if(!this.user_name){
+         }else { //验证码登陆
+           if(!this.name){
              Toast({
                message: '请输入正确的用户名！',
                position: 'bottom',
@@ -198,8 +179,8 @@
              })
              return
            }
-           const result = await pwdLogin(this.user_name,this.pwd,this.captcha)
-           if(result.success_code === 200){
+           const result = await pwdLogin(this.name,this.pwd,this.captcha)
+           if(result.success_code == 200){
              this.userInfo = result.message
            }else {
              this.userInfo = {

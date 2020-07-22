@@ -17,6 +17,7 @@ const General = () => import("../views/Home/Children/General")
 const Man = () => import("../views/Home/Children/Man")
 const Mbady = () => import("../views/Home/Children/Mbady")
 const Shirt = () => import("../views/Home/Children/Shirt")
+const MeSetting = () => import("../views/Me/MeSetting")
 
 
 Vue.use(VueRouter)
@@ -65,6 +66,10 @@ const routes = [
   {
     path:"/login",
     component:Login
+  },
+  {
+    path:"/setting",
+    component:MeSetting
   }
 
 

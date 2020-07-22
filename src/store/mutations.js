@@ -1,5 +1,5 @@
 import {
-  HOME_CASUAL, HOME_NAV, HOME_SHOPS, SEARCH_NAV, SEARCH_SHOPS, RECOMMEND_SHOPS, USER_INFO,
+  HOME_CASUAL, HOME_NAV, HOME_SHOPS, SEARCH_NAV, SEARCH_SHOPS, RECOMMEND_SHOPS, USER_INFO, RESET_USER_INFO,
 } from "./mutation-types"
 export default {
   [HOME_CASUAL](state,{homecasual}){
@@ -21,10 +21,10 @@ export default {
   [SEARCH_SHOPS](state,{searchshops}){
     state.searchshops = searchshops
   },
-  // [LOGIN_VERIFY](state,{loginverify}){
-  //   state.loginverify = loginverify
-  // }
   [USER_INFO](state,{userInfo}){
     state.userinfo = userInfo
   },
+  [RESET_USER_INFO](state){
+    state.useroinfo={}
+  }
 }
