@@ -14,7 +14,8 @@
   import RecommendShops from "./recommendshops/RecommendShops";
   import {mapState} from "vuex"
   import BScroll from "better-scroll"
-  import {Indicator} from "mint-ui"
+  import {Indicator,Toast} from "mint-ui"
+  import "mint-ui/lib/style.css"
   export default {
     name: "Recommend",
     data(){
@@ -53,11 +54,23 @@
 
         //监听列表的滚动
         this.listScroll.on("touchEnd",(pos) =>{
+            const posY = pos.y
           //监听上拉刷新
-          if(pos.y > 50){
-              console.log("上拉刷新")
+          if(posY > 100){
+              Toast({
+                  message:'上拉刷新',
+                  position:'center',
+                  duration:1500,
+                  className:'toast'
+              });
           }
-          if(this.listScroll.maxScrollY > pos.y + 20){
+          if(this.listScroll.maxScrollY > posY + 20){
+              Toast({
+                  message:'下拉加载更多',
+                  position:'center',
+                  duration:1500,
+                  className:'toast'
+              });
               Indicator.open("正在加载数据")
               this.$store.dispatch("reqRecommendShops",{page:this.page,count:this.count,callback:() => {
                       Indicator.close()

@@ -1,6 +1,9 @@
 <template>
   <div class="me-setting">
     <div>
+      <button class="back" @click.prevent="back()">&lt;&nbsp;返回</button>
+    </div>
+    <div style="margin-top: 40px">
       <MecommonCell left-icon="icon-menu" left-title="绑定手机号" right-title="完善我的资料" right-title-color="backgroundColor:red;borderRadius:10px" :click-cell="dealClickCell"></MecommonCell>
       <MecommonCell left-icon="icon-menu" left-title="账号与安全"  :click-cell="dealClickCell"></MecommonCell>
     </div>
@@ -29,6 +32,7 @@
 <script>
   import MecommonCell from "./MecommonCell"
   import {Toast,MessageBox} from "mint-ui";
+  import "mint-ui/lib/style.css"
   import {mapActions} from "vuex"
   export default {
     name: "MeSetting",
@@ -52,7 +56,10 @@
             this.$router.replace("/home")
           }
         })
-      }
+      },
+      back(){
+         this.$router.back()
+        }
     }
   }
 </script>
@@ -78,5 +85,15 @@
     line-height: 40px;
     background-color: #ffffff;
     margin-top: 5px;
+  }
+  .back{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    opacity: 0.5;
   }
 </style>

@@ -2,14 +2,14 @@
   <div class="search">
    <search-nav :isShowSearchPanel="isShowSearchPanel"></search-nav>
     <div class="shop"  >
-      <div class="menu-wrapper" v-show="searchnav.length !== undefined && searchnav.length > 0">
-        <ul class="leftUl" ref="menuParent" >
+      <div class="menu-wrapper">
+        <ul class="leftUl " ref="menuParent" >
           <div >
           <li class="menu-item"
-              v-for="(item,index) in searchnav"
-              :key="index"
-              :class="{current:index === currentIndex}"
-              @click="clickLeftItem(index)"
+              v-for="(item,index1) in array"
+              :key="index1"
+              :class="{current:index1 === currentIndex}"
+              @click="clickLeftItem(index1)"
               ref="menuList"
           >
             <span>{{item.name}}</span>
@@ -17,15 +17,15 @@
           </div>
         </ul>
       </div>
-      <div class="shop-wrapper" v-show="searchnav.length !== undefined && searchnav.length > 0">
+      <div class="shop-wrapper">
       <ul ref="shopsLis">
-        <li class="shops-li" v-for="(item,index) in searchnav" :key="index">
+        <li class="shops-li" v-for="(item,index1) in array" :key="index1">
           <div class="shops-title">
             <h4>{{item.name}}</h4>
             <a href="">查看更多></a>
           </div>
-          <ul class="shops-items" v-show="searchshops.length !== undefined && searchshops.length > 0">
-            <li v-for="(item,index) in searchshops" :key="index">
+          <ul class="shops-items">
+            <li v-for="(item,index2) in shops" :key="index2">
               <img :src="item.imgURL" alt="">
               <span>{{item.name}}</span>
             </li>
@@ -54,6 +54,35 @@
         scrollY:0, //记录右边lis的滚动的距离
         shopsLisTop:[], //记录右边lis的高度
         isShow:false,//设置搜索面板的显示
+        array:[{name:"推荐"},{name:"女装"},{name:"美妆"},{name:"运动"},{name:"数码"},{name:"鞋包"},{name:"食品"},{name:"百货"},{name:"洗护"},{name:"母婴"},{name:"内衣"},{name:"男装"},{name:"生鲜"},{name:"家纺"},{name:"家装"},{name:"车品"},{name:"手机"},{name:"电器"},{name:"健康"},{name:"图书"},{name:"充值"},{name:"海淘"},{name:"品牌"},],
+        shops:[
+          {imgURL:require("../../assets/img/search-shops/search1.jpg"),name:"防嗮袖套"},
+          {imgURL:require("../../assets/img/search-shops/search2.jpg"),name:"连衣裙"},
+          {imgURL:require("../../assets/img/search-shops/search3.jpg"),name:"大码女鞋"},
+          {imgURL:require("../../assets/img/search-shops/search4.jpg"),name:"女款小白鞋"},
+          {imgURL:require("../../assets/img/search-shops/search6.jpg"),name:"之家彩妆"},
+          {imgURL:require("../../assets/img/search-shops/search7.jpg"),name:"文胸套装"},
+          {imgURL:require("../../assets/img/search-shops/search8.jpg"),name:"烘培"},
+          {imgURL:require("../../assets/img/search-shops/search9.jpg"),name:"办公设备"},
+          {imgURL:require("../../assets/img/search-shops/search13.jpg"),name:"民间运动"},
+          {imgURL:require("../../assets/img/search-shops/search10.jpg"),name:"女士泳衣"},
+          {imgURL:require("../../assets/img/search-shops/search11.jpg"),name:"男士泳衣裤"},
+          {imgURL:require("../../assets/img/search-shops/search12.jpg"),name:"汽车"},
+          {imgURL:require("../../assets/img/search-shops/search1.jpg"),name:"防嗮袖套"},
+          {imgURL:require("../../assets/img/search-shops/search2.jpg"),name:"连衣裙"},
+          {imgURL:require("../../assets/img/search-shops/search3.jpg"),name:"大码女鞋"},
+          {imgURL:require("../../assets/img/search-shops/search4.jpg"),name:"女款小白鞋"},
+          {imgURL:require("../../assets/img/search-shops/search6.jpg"),name:"之家彩妆"},
+          {imgURL:require("../../assets/img/search-shops/search7.jpg"),name:"文胸套装"},
+          {imgURL:require("../../assets/img/search-shops/search8.jpg"),name:"烘培"},
+          {imgURL:require("../../assets/img/search-shops/search9.jpg"),name:"办公设备"},
+          {imgURL:require("../../assets/img/search-shops/search13.jpg"),name:"民间运动"},
+          {imgURL:require("../../assets/img/search-shops/search10.jpg"),name:"女士泳衣"},
+          {imgURL:require("../../assets/img/search-shops/search11.jpg"),name:"男士泳衣裤"},
+          {imgURL:require("../../assets/img/search-shops/search12.jpg"),name:"汽车"},],
+        leftscroll:{},
+        rightscroll:{}
+
       }
     },
     components:{
@@ -66,9 +95,9 @@
       ...mapState(["searchshops"]),
 
       currentIndex(){
-        return this.shopsLisTop.findIndex((lisTop,index) =>{
-          this._leftScroll(index)
-          return this.scrollY>= lisTop && this.scrollY < this.shopsLisTop[index+1]
+        return this.shopsLisTop.findIndex((lisTop,index1) =>{
+          // this.leftScroll(index1)
+          return this.scrollY>= lisTop && this.scrollY < this.shopsLisTop[index1+1]
 
         })
       },
@@ -80,7 +109,7 @@
       },
       //左边导航条的滚动
       _initAScroll(){
-        this.leftScroll = new BScroll(".menu-wrapper",{
+        this.left = new BScroll(".menu-wrapper",{
           scrollY:true,
           click:true,
           probeType: 3
@@ -111,15 +140,16 @@
         })
         this.shopsLisTop = tempList
       },
-      clickLeftItem(index){
-        this.scrollY = this.shopsLisTop[index]
+      clickLeftItem(index1){
+        this.scrollY = this.shopsLisTop[index1]
         this.rightscroll.scrollTo(0,-this.scrollY,300)
       },
-      _leftScroll(index){
-        let menuLists = this.$refs.menuList
-        let el = menuLists[index]
-        this.leftScroll.scrollToElement(el,300,0,0)
-      }
+      // leftScroll(index1){
+        // let menuLists = this.$refs.menuList
+        // let el = menuLists[index1]
+        // console.log(el);
+        // this.left.scrollToElement(ml,300,0,0)
+      // }
     },
     watch:{
       searchnav(){

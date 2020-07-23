@@ -66,6 +66,7 @@
 <script>
   import {Toast} from "mint-ui"
   import {loginCode,pwdLogin} from "../../network";
+  import "mint-ui/lib/style.css"
   import {mapActions} from "vuex"
 
   export default {
@@ -111,7 +112,7 @@
           },1000)
           Toast({
             message:'不会发送验证码，请随意输入6位数字登陆',
-            position:'bottom',
+            position:'center',
             duration:1500,
             className:'toast'
           });
@@ -131,7 +132,7 @@
            if(!this.phone){
              Toast({
                message:'请输入手机号码',
-               position:'bottom',
+               position:'center',
                duration:1500,
                className:'toast'
              });
@@ -139,7 +140,7 @@
            }else if(!this.phoneRight){
              Toast({
                message: '请输入正确的手机号码',
-               position: 'bottom',
+               position: 'center',
                duration: 1500,
                className: 'toast'
              })
@@ -157,7 +158,7 @@
            if(!this.name){
              Toast({
                message: '请输入正确的用户名！',
-               position: 'bottom',
+               position: 'center',
                duration: 1500,
                className: 'toast'
              })
@@ -165,7 +166,7 @@
            }else if(!this.pwd) {
              Toast({
                message: '请输入正确的密码！',
-               position: 'bottom',
+               position: 'center',
                duration: 1500,
                className: 'toast'
              })
@@ -173,7 +174,7 @@
            }else if(!this.captcha) {
              Toast({
                message: '请输入正确的验证码！',
-               position: 'bottom',
+               position: 'center',
                duration: 1500,
                className: 'toast'
              })
@@ -208,13 +209,6 @@
     width: 100%;
     height: 100%;
     background: #ffffff;
-  }
-  .toast{
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    color: red !important;
   }
   .login-inner{
     padding-top: 60px;

@@ -16,11 +16,11 @@
       <div slot="item-text">搜索</div>
 
     </tab-bar-item>
-    <tab-bar-item path="/chat">
-      <img slot="item-icon" class="icon-bubbles normal" src="" alt="">
-      <img slot="item-icon-active" class="icon-bubbles active" src="" alt="">
-      <div slot="item-text">聊天</div>
-    </tab-bar-item>
+<!--    <tab-bar-item path="/chat">-->
+<!--      <img slot="item-icon" class="icon-bubbles normal" src="" alt="">-->
+<!--      <img slot="item-icon-active" class="icon-bubbles active" src="" alt="">-->
+<!--      <div slot="item-text">聊天</div>-->
+<!--    </tab-bar-item>-->
     <tab-bar-item path="/me">
       <img slot="item-icon" class="icon-user-tie normal" src="" alt="">
       <img slot="item-icon-active" class="icon-user-tie active" src="" alt="">

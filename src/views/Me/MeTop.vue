@@ -1,10 +1,10 @@
 <template>
   <div class="me-top">
-    <div class="user">
+    <router-link tag="div" to="/user" class="user">
       <img class="icon-user-tie" src="" alt="">
       <p>{{userinfo.phone | phoneFormat}}</p>
       <i class="icon-info"></i>
-    </div>
+    </router-link>
     <div class="my-older">
       <div class="older-top">
         <h3>我的订单</h3>

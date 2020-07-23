@@ -2,7 +2,6 @@ import Vue from "vue"
 import VueRouter from "vue-router";
 
 const Home = () => import("../views/Home/Home")
-const Chat = () => import("../views/Chat/Chat")
 const Me = () => import("../views/Me/Me")
 const Recommend = () => import("../views/Recommend/Recommend")
 const Search = () => import("../views/Search/Search")
@@ -18,6 +17,7 @@ const Man = () => import("../views/Home/Children/Man")
 const Mbady = () => import("../views/Home/Children/Mbady")
 const Shirt = () => import("../views/Home/Children/Shirt")
 const MeSetting = () => import("../views/Me/MeSetting")
+const User = () =>import("../views/Me/User")
 
 
 Vue.use(VueRouter)
@@ -32,14 +32,14 @@ const routes = [
     component:Home,
     children:[
       {path:"hot",component:Hot,meta:{showBottomTabBar:true}},
-      {path:"box",component:Box},
-      {path:"dress",component:Dress},
-      {path:"ele",component:Ele},
-      {path:"food",component:Food},
-      {path:"general",component:General},
-      {path:"man",component:Man},
-      {path:"mbady",component:Mbady},
-      {path:"shirt",component:Shirt},
+      {path:"box",component:Box,meta:{showBottomTabBar:true}},
+      {path:"dress",component:Dress,meta:{showBottomTabBar:true}},
+      {path:"ele",component:Ele,meta:{showBottomTabBar:true}},
+      {path:"food",component:Food,meta:{showBottomTabBar:true}},
+      {path:"general",component:General,meta:{showBottomTabBar:true}},
+      {path:"man",component:Man,meta:{showBottomTabBar:true}},
+      {path:"mbady",component:Mbady,meta:{showBottomTabBar:true}},
+      {path:"shirt",component:Shirt,meta:{showBottomTabBar:true}},
       {path:"/home",redirect:"/home/hot"},
 
     ]
@@ -55,10 +55,6 @@ const routes = [
     component:Recommend,
     meta:{showBottomTabBar:true}
   },{
-    path:"/chat",
-    component:Chat,
-    meta:{showBottomTabBar:true}
-  },{
     path:"/me",
     component:Me,
     meta:{showBottomTabBar:true}
@@ -70,6 +66,10 @@ const routes = [
   {
     path:"/setting",
     component:MeSetting
+  },
+  {
+    path:"/user",
+    component:User
   }
 
 
