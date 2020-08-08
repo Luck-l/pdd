@@ -1,5 +1,5 @@
 import axios from "axios"
-
+// axios.defaults.baseURL = "http://120.78.179.179:3000"
 axios.defaults.withCredentials =false
 export default function ajax(url="",params={},type="GET") {
   let promise;

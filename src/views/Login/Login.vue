@@ -46,7 +46,7 @@
                 <input type="text" maxlength="6" placeholder="验证码" v-model="captcha">
                 <img
                         class="get_verification"
-                        src="http://localhost:3000/api/loginverify"
+                        src="http://120.78.179.179:3000/api/loginverify"
                         alt="captcha"
                         ref="verify"
                         @click.prevent = "getCaptcha()"
@@ -120,7 +120,7 @@
       },
       //刷新密码登陆验证码
       getCaptcha(){
-        this.$refs.verify.src = "http://localhost:3000/api/loginverify?time" +new Date()
+        this.$refs.verify.src = "http://120.78.179.179:3000/api/loginverify?time" +new Date()
       },
       //密码显示方式
       dealPwdMode(flag){

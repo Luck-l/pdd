@@ -1,8 +1,9 @@
 import ajax from "./ajax";
 
 //基础路径
-// const BASE_URL = "http://127.0.0.1:3000";
-const BASE_URL = "/api"
+// axios.defaults.BASE_URL = "http://120.78.179.179:3000"
+const BASE_URL = "http://120.78.179.179:3000";
+// const BASE_URL = "/api"
 
 //请求首页轮播图
 export const getHomeCasual = () => ajax(BASE_URL + "/api/homeswiper")
